@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Postings</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for job card hover effects */
+        .job-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-poppins dark:bg-gray-900 dark:text-gray-100">
+    <!-- Navigation Bar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <a href="{% url 'home' %}" class="text-2xl font-bold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200">
+                <i class="fas fa-briefcase"></i> Job Board
+            </a>
+            <ul class="flex space-x-6">
+                <li><a href="{% url 'home' %}" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="#" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <!-- Dark Mode Toggle Button -->
+            <button id="darkModeToggle" class="text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Welcome Message Section -->
+    <div class="bg-blue-100 py-8 dark:bg-blue-900">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-semibold text-blue-900 dark:text-blue-100 mb-4">
+                Welcome to the Job Board!
+            </h1>
+            <p class="text-lg text-blue-700 dark:text-blue-200">
+                This is a platform for future employees and employers to connect and grow together. Explore our job listings to find your perfect match.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="container mx-auto my-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
+            <!-- Content block for dynamic job listings -->
+            {% block content %}
+                <!-- Example Job Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 job-card">
+                    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">CyberSecurity Analyst</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mt-2">Monitor and stabilize connections and networks</p>
+                    <p class="text-blue-600 dark:text-blue-400 mt-2">$85,000</p>
+                    <button class="mt-4 py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600">
+                        View Details
+                    </button>
+                </div>
+                <!-- End of Example Job Card -->
+            {% endblock content %}
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-gray-200 py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Job Board. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-2">
+                <a href="#" class="text-gray-400 hover:text-gray-100"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#" class="text-gray-400 hover:text-gray-100"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#" class="text-gray-400 hover:text-gray-100"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="#" class="text-gray-400 hover:text-gray-100"><i class="fas fa-envelope"></i> Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Script -->
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            const icon = darkModeToggle.querySelector('i');
+            icon.classList.toggle('fa-sun');
+            icon.classList.toggle('fa-moon');
+        });
+    </script>
+</body>
+</html>

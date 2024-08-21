@@ -1,0 +1,23 @@
+{% extends 'job_postings/_base.html' %}
+{% load humanize %}
+
+{% block content %}
+    <!-- Main container for job postings -->
+    <div class="flex flex-wrap justify-center w-full max-w-6xl mx-auto gap-6 p-6">
+        {% for posting in job_postings %}
+            <!-- Each job posting card -->
+            <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-4">
+                <a href="{% url 'job-detail' posting.pk %}" class="block border rounded-lg overflow-hidden shadow-lg bg-gray-800 hover:bg-gray-700 hover:cursor-pointer transition-all duration-300 ease-in-out">
+                    <div class="p-6 text-white">
+                        <p class="text-2xl pb-2 font-bold">{{ posting.title }}</p>
+                        <hr class="my-2 border-gray-500">
+                        <p class="font-semibold pb-2">Company: {{ posting.company }}</p>
+                        <p class="text-xl pb-2">Salary: ${{ posting.salary|intcomma }}</p>
+                        <p class="underline underline-offset-2 text-blue-400 hover:text-blue-200">View Details</p>
+                    </div>
+                </a>
+            </div>
+            <!-- End of job posting card -->
+        {% endfor %}
+    </div>
+{% endblock content %}
